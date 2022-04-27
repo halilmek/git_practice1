@@ -27,7 +27,6 @@ public abstract class Car {
         }
         this.fuel = fuel;
     }
-
     public String getBrand() {
 
         return brand;
