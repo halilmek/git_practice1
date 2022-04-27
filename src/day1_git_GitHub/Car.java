@@ -1,20 +1,31 @@
 package day1_git_GitHub;
 
-public class Car {
+public abstract class Car {
 
     private final String brand;
     private String model;
     private String color;
     private final int year;
     private double price;
+    private final String fuel;
 
-    public Car(String brand, String model, String color, int year, double price) {
+    public Car(String brand, String model, String color, int year, double price, String fuel) {
 
         this.brand = brand;
         setModel(model);
         setColor(color);
+
+        if (year <= 1995) {
+
+            throw new RuntimeException("invalid year given: "+ year);
+        }
         this.year = year;
         setPrice(price);
+
+        if (!(fuel.equalsIgnoreCase("diesel") || fuel.equalsIgnoreCase("fuel") || fuel.equalsIgnoreCase("gas"))){
+            throw new RuntimeException("invalid fuel type given: "+ fuel);
+        }
+        this.fuel = fuel;
     }
 
     public String getBrand() {
@@ -66,4 +77,16 @@ public class Car {
         this.price = price;
     }
 
+    public abstract void start();
+
+    public String toString() {
+
+        return "Car {\nbrand = "+ getBrand()+
+                "\nmodel = "+ getModel()+
+                "\ncolor = "+ getColor()+
+                "\nyear = "+ getYear()+
+                "\nprice = "+ getPrice()+
+                "\nfeul = "+ fuel+
+                "}";
+    }
 }
